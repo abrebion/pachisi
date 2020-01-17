@@ -1,0 +1,394 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main-container {
+    display: flex;
+}
+
+#controls {
+    flex: 1;
+    margin-left: 20px;
+}
+
+#board:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background-color: brown;
+}
+
+/************************************* Main board grid *************************************/
+#board {
+    border: 10px solid black;
+    background-color: bisque;
+    position: relative;
+    width: 600px;
+    height: 600px;
+    margin: 10px;
+    display: grid;
+    grid-template-rows: 20px repeat(11, 1fr) 20px;
+    grid-template-columns: 20px repeat(11, 1fr) 20px;
+    grid-template-areas:
+        ". . . . . . . . . . . . ."
+        ". region-top-left region-top-left region-top-left region-top-left cell-38 cell-39 cell-0 region-top-right region-top-right region-top-right region-top-right ."
+        ". region-top-left region-top-left region-top-left region-top-left cell-37 green-safe-1 cell-1 region-top-right region-top-right region-top-right region-top-right ."
+        ". region-top-left region-top-left region-top-left region-top-left cell-36 green-safe-2 cell-2 region-top-right region-top-right region-top-right region-top-right ."
+        ". region-top-left region-top-left region-top-left region-top-left cell-35 green-safe-3 cell-3 region-top-right region-top-right region-top-right region-top-right ."
+        ". cell-30 cell-31 cell-32 cell-33 cell-34 green-safe-4 cell-4 cell-5 cell-6 cell-7 cell-8 ."
+        ". cell-29 blue-safe-1 blue-safe-2 blue-safe-3 blue-safe-4 . yellow-safe-1 yellow-safe-2 yellow-safe-3 yellow-safe-4 cell-9 ."
+        ". cell-28 cell-27 cell-26 cell-25 cell-24 red-safe-4 cell-14 cell-13 cell-12 cell-11 cell-10 ."
+        ". region-bottom-left region-bottom-left region-bottom-left region-bottom-left cell-23 red-safe-3 cell-15 region-bottom-right region-bottom-right region-bottom-right region-bottom-right ."
+        ". region-bottom-left region-bottom-left region-bottom-left region-bottom-left cell-22 red-safe-2 cell-16 region-bottom-right region-bottom-right region-bottom-right region-bottom-right ."
+        ". region-bottom-left region-bottom-left region-bottom-left region-bottom-left cell-21 red-safe-1 cell-17 region-bottom-right region-bottom-right region-bottom-right region-bottom-right ."
+        ". region-bottom-left region-bottom-left region-bottom-left region-bottom-left cell-20 cell-19 cell-18 region-bottom-right region-bottom-right region-bottom-right region-bottom-right ."
+        ". . . . . . . . . . . . .";
+}
+
+.cell-0 {
+    grid-area: cell-0;
+}
+
+.cell-1 {
+    grid-area: cell-1;
+}
+
+.cell-2 {
+    grid-area: cell-2;
+}
+
+.cell-3 {
+    grid-area: cell-3;
+}
+
+.cell-4 {
+    grid-area: cell-4;
+}
+
+.cell-5 {
+    grid-area: cell-5;
+}
+
+.cell-6 {
+    grid-area: cell-6;
+}
+
+.cell-7 {
+    grid-area: cell-7;
+}
+
+.cell-8 {
+    grid-area: cell-8;
+}
+
+.cell-9 {
+    grid-area: cell-9;
+}
+
+.cell-10 {
+    grid-area: cell-10;
+}
+
+.cell-11 {
+    grid-area: cell-11;
+}
+
+.cell-12 {
+    grid-area: cell-12;
+}
+
+.cell-13 {
+    grid-area: cell-13;
+}
+
+.cell-14 {
+    grid-area: cell-14;
+}
+
+.cell-15 {
+    grid-area: cell-15;
+}
+
+.cell-16 {
+    grid-area: cell-16;
+}
+
+.cell-17 {
+    grid-area: cell-17;
+}
+
+.cell-18 {
+    grid-area: cell-18;
+}
+
+.cell-19 {
+    grid-area: cell-19;
+}
+
+.cell-20 {
+    grid-area: cell-20;
+}
+
+.cell-21 {
+    grid-area: cell-21;
+}
+
+.cell-22 {
+    grid-area: cell-22;
+}
+
+.cell-22 {
+    grid-area: cell-22;
+}
+
+.cell-23 {
+    grid-area: cell-23;
+}
+
+.cell-24 {
+    grid-area: cell-24;
+}
+
+.cell-25 {
+    grid-area: cell-25;
+}
+
+.cell-26 {
+    grid-area: cell-26;
+}
+
+.cell-27 {
+    grid-area: cell-27;
+}
+
+.cell-28 {
+    grid-area: cell-28;
+}
+
+.cell-29 {
+    grid-area: cell-29;
+}
+
+.cell-30 {
+    grid-area: cell-30;
+}
+
+.cell-31 {
+    grid-area: cell-31;
+}
+
+.cell-32 {
+    grid-area: cell-32;
+}
+
+.cell-33 {
+    grid-area: cell-33;
+}
+
+.cell-34 {
+    grid-area: cell-34;
+}
+
+.cell-35 {
+    grid-area: cell-35;
+}
+
+.cell-36 {
+    grid-area: cell-36;
+}
+
+.cell-37 {
+    grid-area: cell-37;
+}
+
+.cell-38 {
+    grid-area: cell-38;
+}
+
+.cell-39 {
+    grid-area: cell-39;
+}
+
+.cell.green-safe-1 {
+    grid-area: green-safe-1;
+}
+
+.cell.green-safe-2 {
+    grid-area: green-safe-2;
+}
+
+.cell.green-safe-3 {
+    grid-area: green-safe-3;
+}
+.cell.green-safe-4 {
+    grid-area: green-safe-4;
+}
+
+.cell.yellow-safe-1 {
+    grid-area: yellow-safe-1;
+}
+
+.cell.yellow-safe-2 {
+    grid-area: yellow-safe-2;
+}
+
+.cell.yellow-safe-3 {
+    grid-area: yellow-safe-3;
+}
+.cell.yellow-safe-4 {
+    grid-area: yellow-safe-4;
+}
+
+.cell.red-safe-1 {
+    grid-area: red-safe-1;
+}
+
+.cell.red-safe-2 {
+    grid-area: red-safe-2;
+}
+
+.cell.red-safe-3 {
+    grid-area: red-safe-3;
+}
+.cell.red-safe-4 {
+    grid-area: red-safe-4;
+}
+
+.cell.blue-safe-1 {
+    grid-area: blue-safe-1;
+}
+
+.cell.blue-safe-2 {
+    grid-area: blue-safe-2;
+}
+
+.cell.blue-safe-3 {
+    grid-area: blue-safe-3;
+}
+
+.cell.blue-safe-4 {
+    grid-area: blue-safe-4;
+}
+
+/************************************* Single cell *************************************/
+.cell {
+    background-color: white;
+    border-radius: 50%;
+    border: 3px solid black;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+    position: relative;
+    color: transparent;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.green {
+    background-color: green;
+}
+
+.start:before {
+    background-image: url('/assets/img/start-position.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 40%;
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%
+}
+
+.start.green:before {
+    
+}
+
+.start.yellow:before {
+    transform: rotate(90deg);
+}
+
+.start.red:before {
+    transform: rotate(180deg);
+}
+
+.start.blue:before {
+    transform: rotate(-90deg);
+}
+
+.safe {
+    background-image: url('/assets/img/safe-position.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 60%;
+    /* background-color: red;
+    -webkit-mask-image: url('/assets/img/safe-position.svg');
+    mask-image: url('/assets/img/safe-position.svg'); */
+}
+
+/************************************* Player region *************************************/
+
+.region {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.region.top-left {
+    grid-area: region-top-left;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.region.top-right {
+    grid-area: region-top-right;
+    justify-content: flex-end;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.region.bottom-left {
+    grid-area: region-bottom-left;
+    justify-content: flex-start;
+    align-items: flex-end;
+    align-content: flex-end;
+}
+
+.region.bottom-right {
+    grid-area: region-bottom-right;
+    justify-content: flex-end;
+    align-items: flex-end;
+    align-content: flex-end;
+}
+
+.pawn-home {
+    width: 50px;
+    height: 50px;
+    border: 3px solid black;
+    border-radius: 50%;
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}

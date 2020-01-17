@@ -5,85 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Pachisi Game (IN), Ludo (UK), Petits Chevaux (FR), Parcheesi (US)...</title>
-    <link rel="stylesheet" href="./assets/styles.css" />
+    <link rel="stylesheet" href="./assets/css/styles.css" />
   </head>
   <body>
     <div class="main-container">
       <div id="board">
         <!-- Main board -->
-        <div class="area main top-center">
-          <div class="cell">44</div>
-          <div class="cell">45</div>
-          <div class="cell green">1</div>
-          <div class="cell">43</div>
-          <div class="cell green"></div>
-          <div class="cell">2</div>
-          <div class="cell">42</div>
-          <div class="cell green"></div>
-          <div class="cell">3</div>
-          <div class="cell">41</div>
-          <div class="cell green"></div>
-          <div class="cell">4</div>
-        </div>
-        <div class="area main middle-left">
-          <div class="cell blue">31</div>
-          <div class="cell">32</div>
-          <div class="cell">33</div>
-          <div class="cell">34</div>
-          <div class="cell">30</div>
-          <div class="cell blue"></div>
-          <div class="cell blue"></div>
-          <div class="cell blue"></div>
-          <div class="cell">29</div>
-          <div class="cell">28</div>
-          <div class="cell">27</div>
-          <div class="cell">26</div>
-        </div>
-        <div class="area main middle-center">
-          <div class="cell">35</div>
-          <div class="cell green"></div>
-          <div class="cell">5</div>
-          <div class="cell blue"></div>
-          <div class="cell transparent"></div>
-          <div class="cell yellow"></div>
-          <div class="cell">25</div>
-          <div class="cell red"></div>
-          <div class="cell">15</div>
-        </div>
-        <div class="area main middle-right">
-          <div class="cell">6</div>
-          <div class="cell">7</div>
-          <div class="cell">8</div>
-          <div class="cell">9</div>
-          <div class="cell yellow"></div>
-          <div class="cell yellow"></div>
-          <div class="cell yellow"></div>
-          <div class="cell">10</div>
-          <div class="cell">14</div>
-          <div class="cell">13</div>
-          <div class="cell">12</div>
-          <div class="cell yellow">11</div>
-        </div>
-        <div class="area main bottom-center">
-          <div class="cell">24</div>
-          <div class="cell red"></div>
-          <div class="cell">16</div>
-          <div class="cell">23</div>
-          <div class="cell red"></div>
-          <div class="cell">15</div>
-          <div class="cell">22</div>
-          <div class="cell red"></div>
-          <div class="cell">14</div>
-          <div class="cell red">21</div>
-          <div class="cell">20</div>
-          <div class="cell">19</div>
-        </div>
-
-        <!-- Secondary areas -->
-        <div class="area secondary top-left">Top Left Area</div>
-        <div class="area secondary top-right">Top Right Area</div>
-        <div class="area secondary bottom-left">Bottom Left Area</div>
-        <div class="area secondary bottom-right">Bottom Right Area</div>
+          <div class="cell cell-0 green start">1</div>
+          <div class="cell cell-1">2</div>
+          <div class="cell cell-2">3</div>
+          <div class="cell cell-3">4</div>
+          <div class="cell cell-4 safe">5</div>
+          <div class="cell cell-5">6</div>
+          <div class="cell cell-6">7</div>
+          <div class="cell cell-7">8</div>
+          <div class="cell cell-8">9</div>
+          <div class="cell cell-9">10</div>
+          <div class="cell cell-10 yellow start">11</div>
+          <div class="cell cell-11">12</div>
+          <div class="cell cell-12">13</div>
+          <div class="cell cell-13">14</div>
+          <div class="cell cell-14 safe">15</div>
+          <div class="cell cell-15">16</div>
+          <div class="cell cell-16">17</div>
+          <div class="cell cell-17">18</div>
+          <div class="cell cell-18">19</div>
+          <div class="cell cell-19">20</div>
+          <div class="cell cell-20 red start">21</div>
+          <div class="cell cell-21">22</div>
+          <div class="cell cell-22">23</div>
+          <div class="cell cell-23">24</div>
+          <div class="cell cell-24 safe">25</div>
+          <div class="cell cell-25">26</div>
+          <div class="cell cell-26">27</div>
+          <div class="cell cell-27">28</div>
+          <div class="cell cell-28">29</div>
+          <div class="cell cell-29">30</div>
+          <div class="cell cell-30 blue start">31</div>
+          <div class="cell cell-31">32</div>
+          <div class="cell cell-32">33</div>
+          <div class="cell cell-33">34</div>
+          <div class="cell cell-34 safe">35</div>
+          <div class="cell cell-35">36</div>
+          <div class="cell cell-36">37</div>
+          <div class="cell cell-37">38</div>
+          <div class="cell cell-38">39</div>
+          <div class="cell cell-39">40</div>
+          <!-- Safe Zone -->
+          <div class="cell green-safe-1 green"></div>
+          <div class="cell green-safe-2 green"></div>
+          <div class="cell green-safe-3 green"></div>
+          <div class="cell green-safe-4 green"></div>
+          <div class="cell yellow-safe-1 yellow"></div>
+          <div class="cell yellow-safe-2 yellow"></div>
+          <div class="cell yellow-safe-3 yellow"></div>
+          <div class="cell yellow-safe-4 yellow"></div>
+          <div class="cell red-safe-1 red"></div>
+          <div class="cell red-safe-2 red"></div>
+          <div class="cell red-safe-3 red"></div>
+          <div class="cell red-safe-4 red"></div>
+          <div class="cell blue-safe-1 blue"></div>
+          <div class="cell blue-safe-2 blue"></div>
+          <div class="cell blue-safe-3 blue"></div>
+          <div class="cell blue-safe-4 blue"></div>
+          <!-- Pawn Region -->
+          <div class="region top-left" id="player-blue">
+              <div id="blue-pawn-1" class="pawn-home blue">1</div>
+              <div id="blue-pawn-2" class="pawn-home blue">2</div>
+              <div id="blue-pawn-3" class="pawn-home blue">3</div>
+              <div id="blue-pawn-4" class="pawn-home blue">4</div>
+          </div>
+          <div class="region top-right" id="player-green">
+            <div id="green-pawn-1" class="pawn-home green">1</div>
+            <div id="green-pawn-3" class="pawn-home green">2</div>
+            <div id="green-pawn-4" class="pawn-home green">3</div>
+            <div id="green-pawn-4" class="pawn-home green">4</div>
+          </div>
+          <div class="region bottom-left" id="player-red">
+            <div id="red-pawn-1" class="pawn-home red">1</div>
+            <div id="red-pawn-2" class="pawn-home red">2</div>
+            <div id="red-pawn-3" class="pawn-home red">3</div>
+            <div id="red-pawn-4" class="pawn-home red">4</div>
+          </div>
+          <div class="region bottom-right" id="player-yellow">
+            <div id="yellow-pawn-1" class="pawn-home yellow">1</div>
+            <div id="yellow-pawn-2" class="pawn-home yellow">2</div>
+            <div id="yellow-pawn-3" class="pawn-home yellow">3</div>
+            <div id="yellow-pawn-4" class="pawn-home yellow">4</div>
+          </div>
       </div>
       <div id="controls">
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis impedit obcaecati sit delectus blanditiis. Autem accusantium hic architecto neque, iusto ullam in id
