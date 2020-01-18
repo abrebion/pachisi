@@ -1,16 +1,98 @@
+:root {
+    --green-color: green;
+    --yellow-color: yellow;
+    --red-color: red;
+    --blue-color: blue;
+    --board-color: hsl(33, 100%, 88%);
+    --outside-border-board: brown;
+    --inside-border-board: black;
+    --btn-hs-color: 33,100%;
+    --btn-color: hsl(var(--btn-hs-color), 88%);
+    --btn-color-hover: hsl(var(--btn-hs-color), 80%);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.main-container {
-    display: flex;
+body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#controls {
-    flex: 1;
+h1, h2, p {
+    margin-bottom: 1rem;
+}
+
+#main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#control-panel {
+    width: 300px;
     margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1.title {
+    font-size: 5rem;
+    font-family: "Pacifico", cursive;
+    padding: 0 0.5rem;
+    background-image: linear-gradient(90deg, var(--green-color), var(--blue-color), var(--yellow-color), var(--red-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+h2.sub-title {
+    font-family: "Pacifico", cursive;
+    font-size: 1.6rem;
+    line-height: 0;
+}
+
+#control-panel button.btn {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: var(--btn-color);
+    border: 2px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#control-panel button.btn:hover {
+    background-color: var(--btn-color-hover);
+}
+
+
+#control-panel button.btn.inactive {
+    cursor: not-allowed;
+    background: repeating-linear-gradient(
+        -45deg,
+        var(--btn-color-hover),
+        var(--btn-color-hover) 10px,
+        var(--btn-color) 10px,
+        var(--btn-color) 20px
+    )
+}
+
+#start-rules {
+    margin: 1.8rem 0;
+}
+
+#dice {
+    width: 80px;
+    height: 80px;
+    margin: 2rem;
+    background-image: url('/assets/img/dice-perspective.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    /* background-size: 80px; */
 }
 
 #board:after {
@@ -21,13 +103,13 @@
     left: -20px;
     right: -20px;
     bottom: -20px;
-    background-color: brown;
+    background-color: var(--outside-border-board);
 }
 
 /************************************* Main board grid *************************************/
 #board {
-    border: 10px solid black;
-    background-color: bisque;
+    border: 10px solid var(--inside-border-board);
+    background-color: var(--board-color);
     position: relative;
     width: 600px;
     height: 600px;
@@ -292,19 +374,19 @@
 }
 
 .yellow {
-    background-color: yellow;
+    background-color: var(--yellow-color);
 }
 
 .red {
-    background-color: red;
+    background-color: var(--red-color);
 }
 
 .blue {
-    background-color: blue;
+    background-color: var(--blue-color);
 }
 
 .green {
-    background-color: green;
+    background-color: var(--green-color);
 }
 
 .start:before {
@@ -348,47 +430,110 @@
 /************************************* Player region *************************************/
 
 .region {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-gap: 10px 10px;
 }
 
 .region.top-left {
     grid-area: region-top-left;
-    justify-content: flex-start;
-    align-items: flex-start;
-    align-content: flex-start;
+    grid-template-rows: 60% 1fr;
+    grid-template-columns: 60% 1fr;
 }
 
 .region.top-right {
     grid-area: region-top-right;
-    justify-content: flex-end;
-    align-items: flex-start;
-    align-content: flex-start;
+    grid-template-rows: 60% 1fr;
+    grid-template-columns: 1fr 60%;
 }
 
 .region.bottom-left {
     grid-area: region-bottom-left;
-    justify-content: flex-start;
-    align-items: flex-end;
-    align-content: flex-end;
+    grid-template-rows: 1fr 60%;
+    grid-template-columns: 60% 1fr;
 }
 
 .region.bottom-right {
     grid-area: region-bottom-right;
-    justify-content: flex-end;
-    align-items: flex-end;
-    align-content: flex-end;
+    grid-template-rows: 1fr 60%;
+    grid-template-columns: 1fr 60%;
 }
 
-.pawn-home {
+.yard {
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-wrap: wrap;
+}
+
+.region.top-left .yard {
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+}
+
+.region.top-right .yard {
+    grid-row: 1 / 2;
+    grid-column: 2 / 2;
+}
+
+.region.bottom-left .yard {
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 1;
+}
+
+.region.bottom-right .yard {
+    grid-row: 2 / 2;
+    grid-column: 2 / 2;
+}
+
+.token-yard {
     width: 50px;
     height: 50px;
     border: 3px solid black;
     border-radius: 50%;
     padding: 10px;
-    margin: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
+.token {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.5);
+}
+
+.modal-is-visible {
+    z-index: 10;
+    position: absolute;
+    top: 20%;
+    bottom: 20%;
+    left: 20%;
+    right: 20%;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 15px 5px rgba(0, 0 , 0, 0.2);
+    overflow: auto;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.modal-close-btn:after {
+    content: "X";
+}
+
+.background-overlay {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: black;
+    opacity: 0.8;
+    width: 100vw;
+    height: 100vh;
 }

@@ -4,11 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Pachisi Game (IN), Ludo (UK), Petits Chevaux (FR), Parcheesi (US)...</title>
+    <title>Ludo Game (UK), Petits Chevaux (FR), Parcheesi (US), Pachisi Game (IN)...</title>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/styles.css" />
   </head>
   <body>
-    <div class="main-container">
+    <div id="main-container">
       <div id="board">
         <!-- Main board -->
           <div class="cell cell-0 green start">1</div>
@@ -68,36 +69,53 @@
           <div class="cell blue-safe-2 blue"></div>
           <div class="cell blue-safe-3 blue"></div>
           <div class="cell blue-safe-4 blue"></div>
-          <!-- Pawn Region -->
+          <!-- Token Region -->
           <div class="region top-left" id="player-blue">
-              <div id="blue-pawn-1" class="pawn-home blue">1</div>
-              <div id="blue-pawn-2" class="pawn-home blue">2</div>
-              <div id="blue-pawn-3" class="pawn-home blue">3</div>
-              <div id="blue-pawn-4" class="pawn-home blue">4</div>
+              <div class="yard">
+                <div class="token-yard blue">
+                  <div id="token-blue-1" class="token blue"></div>
+                </div>
+                <div id="blue-token-2" class="token-yard blue">2</div>
+                <div id="blue-token-3" class="token-yard blue">3</div>
+                <div id="blue-token-4" class="token-yard blue">4</div>
+              </div>
           </div>
           <div class="region top-right" id="player-green">
-            <div id="green-pawn-1" class="pawn-home green">1</div>
-            <div id="green-pawn-3" class="pawn-home green">2</div>
-            <div id="green-pawn-4" class="pawn-home green">3</div>
-            <div id="green-pawn-4" class="pawn-home green">4</div>
+            <div class="yard">
+              <div id="green-token-1" class="token-yard green">1</div>
+              <div id="green-token-3" class="token-yard green">2</div>
+              <div id="green-token-4" class="token-yard green">3</div>
+              <div id="green-token-4" class="token-yard green">4</div>
+            </div>
           </div>
           <div class="region bottom-left" id="player-red">
-            <div id="red-pawn-1" class="pawn-home red">1</div>
-            <div id="red-pawn-2" class="pawn-home red">2</div>
-            <div id="red-pawn-3" class="pawn-home red">3</div>
-            <div id="red-pawn-4" class="pawn-home red">4</div>
+            <div class="yard">
+              <div id="red-token-1" class="token-yard red">1</div>
+              <div id="red-token-2" class="token-yard red">2</div>
+              <div id="red-token-3" class="token-yard red">3</div>
+              <div id="red-token-4" class="token-yard red">4</div>
+            </div>
           </div>
           <div class="region bottom-right" id="player-yellow">
-            <div id="yellow-pawn-1" class="pawn-home yellow">1</div>
-            <div id="yellow-pawn-2" class="pawn-home yellow">2</div>
-            <div id="yellow-pawn-3" class="pawn-home yellow">3</div>
-            <div id="yellow-pawn-4" class="pawn-home yellow">4</div>
+            <div class="yard">
+              <div id="yellow-token-1" class="token-yard yellow">1</div>
+              <div id="yellow-token-2" class="token-yard yellow">2</div>
+              <div id="yellow-token-3" class="token-yard yellow">3</div>
+              <div id="yellow-token-4" class="token-yard yellow">4</div>
+            </div>
           </div>
       </div>
-      <div id="controls">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis impedit obcaecati sit delectus blanditiis. Autem accusantium hic architecto neque, iusto ullam in id
-        nobis est odio optio esse adipisci eligendi, quaerat assumenda aspernatur repudiandae laudantium amet quis? Error, dolores ducimus?
+      <div id="control-panel">
+        <h2 class="sub-title">Let's Play</h2>
+        <h1 class="title">Ludo</h1>
+        <div id="start-rules"><button class="btn">Start</button><button class="btn" data-modal="rules">Rules</button></div>
+        <div id="dice"></div>
+        <button id="roll-dice-btn" class="btn inactive">Roll the dice</button>
       </div>
     </div>
+    <div id="cover"></div>
+    <div id="modal"></div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./src/main.js"></script>
   </body>
 </html>
