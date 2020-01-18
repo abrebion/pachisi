@@ -1,14 +1,18 @@
 :root {
-    --green-color: green;
-    --yellow-color: yellow;
-    --red-color: red;
-    --blue-color: blue;
+    --green-hsl: 120,100%;
+    --yellow-hsl: 60, 100%;
+    --red-hsl: 0, 100%;
+    --blue-hsl: 240,100%;
+    --green-color: hsl(var(--green-hsl), 25%);
+    --yellow-color: hsl(var(--yellow-hsl), 50%);
+    --red-color: hsl(var(--red-hsl), 50%);
+    --blue-color: hsl(var(--blue-hsl), 50%);
     --board-color: hsl(33, 100%, 88%);
     --outside-border-board: brown;
     --inside-border-board: black;
-    --btn-hs-color: 33,100%;
-    --btn-color: hsl(var(--btn-hs-color), 88%);
-    --btn-color-hover: hsl(var(--btn-hs-color), 80%);
+    --btn-hsl: 33,100%;
+    --btn-color: hsl(var(--btn-hsl), 88%);
+    --btn-color-hover: hsl(var(--btn-hsl), 80%);
 }
 
 * {
@@ -500,7 +504,30 @@ h2.sub-title {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.5);
+}
+
+.token.green {
+    box-shadow: 0px 0px 4px 1px hsl(var(--green-hsl), 5%),
+                inset 6px 6px 6px -5px hsl(var(--green-hsl), 95%),
+                inset -6px -6px 6px -6px hsl(var(--green-hsl), 5%);
+}
+
+.token.yellow {
+    box-shadow: 0px 0px 4px 1px hsl(var(--yellow-hsl), 5%),
+                inset 6px 6px 6px -5px hsl(var(--yellow-hsl), 95%),
+                inset -6px -6px 6px -6px hsl(var(--yellow-hsl), 5%);
+}
+
+.token.red {
+    box-shadow: 0px 0px 4px 1px hsl(var(--red-hsl), 5%),
+                inset 6px 6px 6px -5px hsl(var(--red-hsl), 95%),
+                inset -6px -6px 6px -6px hsl(var(--red-hsl), 5%);
+}
+
+.token.blue {
+    box-shadow: 0px 0px 4px 1px hsl(var(--blue-hsl), 5%),
+                inset 6px 6px 6px -5px hsl(var(--blue-hsl), 95%),
+                inset -6px -6px 6px -6px hsl(var(--blue-hsl), 5%);
 }
 
 .modal-is-visible {
