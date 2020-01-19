@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Ludo Game (UK), Petits Chevaux (FR), Parcheesi (US), Pachisi Game (IN)...</title>
     <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <link rel="stylesheet" href="./assets/css/styles.css" />
   </head>
   <body>
@@ -118,13 +119,35 @@
       <div id="control-panel">
         <h2 class="sub-title">Let's Play</h2>
         <h1 class="title">Ludo</h1>
+        <div id="player-settings">
+          <p><strong>Enter player's names (up to 4)</strong></p>
+         <fieldset>
+            <label for="">Player 1:</label>
+            <input type="text" placeholder="Enter your name" >
+            <select name="color" id="">
+              <option value="blue" selected>Blue</option>
+              <option value="green">Green</option>
+              <option value="red">Red</option>
+              <option value="yellow">Yellow</option>
+            </select>
+         </fieldset>
+         <fieldset>
+            <label for="">Player 2:</label>
+            <input type="text" placeholder="Enter your name" >
+            <select name="color" id="">
+              <option value="blue">Blue</option>
+              <option value="green" selected>Green</option>
+              <option value="red">Red</option>
+              <option value="yellow">Yellow</option>
+            </select><i class="fas fa-plus-square add-player-btn"></i>
+         </fieldset>
+        </div>
         <div id="start-rules"><button class="btn">Start</button><button class="btn" data-modal="rules">Rules</button></div>
         <div id="dice"></div>
         <button id="roll-dice-btn" class="btn inactive">Roll the dice</button>
       </div>
     </div>
-    <div id="cover"></div>
-    <div id="modal"></div>
+    
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="./src/main.js"></script>
   </body>

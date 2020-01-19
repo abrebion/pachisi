@@ -37,7 +37,7 @@ h1, h2, p {
 }
 
 #control-panel {
-    width: 300px;
+    width: 400px;
     margin-left: 20px;
     display: flex;
     flex-direction: column;
@@ -58,6 +58,31 @@ h2.sub-title {
     font-family: "Pacifico", cursive;
     font-size: 1.6rem;
     line-height: 0;
+}
+
+#control-panel fieldset {
+    border: none;
+    margin-bottom: 10px;
+}
+
+#control-panel input[type="text"] {
+    border: none;
+    border-bottom: 1px solid lightgray;
+    padding: 5px 0px;
+    margin: 0 10px;
+}
+
+#control-panel select {
+    border: none;
+    border-bottom: 1px solid lightgray;
+    padding: 5px 0px;
+    margin: 0 10px;
+}
+
+#control-panel .add-player-btn,
+#control-panel .remove-player-btn {
+    cursor: pointer;
+    margin: 0 5px;
 }
 
 #control-panel button.btn {
@@ -500,6 +525,9 @@ h2.sub-title {
     align-items: center;
 }
 
+
+/************************************* Token *************************************/
+
 .token {
     width: 25px;
     height: 25px;
@@ -530,6 +558,9 @@ h2.sub-title {
                 inset -6px -6px 6px -6px hsl(var(--blue-hsl), 5%);
 }
 
+
+/************************************* Modal Window *************************************/
+
 .modal-is-visible {
     z-index: 10;
     position: absolute;
@@ -549,10 +580,6 @@ h2.sub-title {
     top: 10px;
     right: 10px;
     cursor: pointer;
-}
-
-.modal-close-btn:after {
-    content: "X";
 }
 
 .background-overlay {
