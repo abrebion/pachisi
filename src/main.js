@@ -92,7 +92,7 @@ function startGame(evt) {
   console.log(game);
   document.getElementById("dice").classList.toggle("animated");
   document.getElementById("roll-dice-btn").classList.toggle("inactive");
-  document.getElementById("roll-dice-btn").onclick = game.play(game.currentPlayer, game.selectTokenToMove(game.currentToken));
+  document.getElementById("roll-dice-btn").onclick = game.play(game.selectTokenToMove(game.players[game.currentPlayer]));
 }
 
 // // Parametric CSS animation

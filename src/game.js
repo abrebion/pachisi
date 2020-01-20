@@ -3,10 +3,7 @@ class Game {
     this.players = players;
     this.currentPlayer = 0;
     this.currentToken = 0;
-    this.players = players.map(player => {
-      player.tokens = this.initializePlayer(player);
-      return player;
-    });
+    this.initializePlayer();
   }
 
   // Set the starting position based on color
@@ -17,28 +14,32 @@ class Game {
     if (color === "blue") return 30;
   }
 
-  initializePlayer(player) {
+  initializePlayer() {
     console.log(this);
-    console.log();
-    // Initialize token positions on board
-    const tokens = [];
-    for (let i = 1; i <= 4; i++) {
-      tokens.push(new Token(player.color, i, this.getStartingPosition(player.color)));
-      const newTokenEl = document.createElement("div");
-      newTokenEl.id = `token-${player.color}-${i}`;
-      newTokenEl.className = `token ${player.color}`;
-      document.body.appendChild(newTokenEl);
-      const yardTop = getCellCoordinates("yard-" + player.color + "-" + i).top;
-      const yardLeft = getCellCoordinates("yard-" + player.color + "-" + i).left;
-      newTokenEl.style.top = `${yardTop + 12.5}px`;
-      newTokenEl.style.left = `${yardLeft + 12.5}px`;
-    }
-    // Render player's names
-    document.querySelector("#player-" + player.color + " .player-name").textContent = player.name;
-    document.getElementById("roll-dice-btn").textContent = `${this.getPlayerName(this.players[this.currentPlayer])} rolls the dice`;
     console.log("Next player to play:" + this.currentPlayer);
+    return this.players.map(player => {
+      const tokens = [];
+      for (let i = 1; i <= 4; i++) {
+        tokens.push(new Token(player.color, i, this.getStartingPosition(player.color)));
+        const newTokenEl = document.createElement("div");
+        newTokenEl.id = `token-${player.color}-${i}`;
+        newTokenEl.className = `token ${player.color}`;
+        document.body.appendChild(newTokenEl);
+        const yardTop = getCellCoordinates("yard-" + player.color + "-" + i).top;
+        const yardLeft = getCellCoordinates("yard-" + player.color + "-" + i).left;
+        newTokenEl.style.top = `${yardTop + 12.5}px`;
+        newTokenEl.style.left = `${yardLeft + 12.5}px`;
+      }
+      // Render player's names
+      document.querySelector("#player-" + player.color + " .player-name").textContent = player.name;
+      document.getElementById("roll-dice-btn").textContent = `${this.getPlayerName(this.players[this.currentPlayer])} rolls the dice`;
+      player.tokens = tokens;
+      return player;
+    });
+    // Initialize token positions on board
+
     // Return an array of tokens tobe appended to the Player object
-    return tokens;
+    // return tokens;
   }
 
   // Get player name
@@ -53,14 +54,13 @@ class Game {
   }
 
   selectTokenToMove(player) {
-    this.currentToken = this.players[this.currentPlayer][0];
-    return this.players[this.currentPlayer].tokens[0];
+    this.currentToken = player.tokens[0];
+    return this.currentToken;
   }
 
   // Player play
-  play(player, token) {
+  play(token) {
     return evt => {
-      // debugger;
       token.move();
       this.rotatePlayer();
       console.log("Next player to play:" + this.currentPlayer);
