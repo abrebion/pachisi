@@ -77,8 +77,9 @@ function getPlayerSettings(player) {
 }
 
 function getPlayers() {
-  return [...document.querySelectorAll("#player-settings fieldset")].map(e => {
+  return [...document.querySelectorAll("#player-settings fieldset")].map((e, index) => {
     return {
+      id: index + 1,
       name: e.querySelector("input[type=text]").value,
       color: e.querySelector("select").value
     };
@@ -91,8 +92,7 @@ function startGame(evt) {
   console.log(game);
   document.getElementById("dice").classList.toggle("animated");
   document.getElementById("roll-dice-btn").classList.toggle("inactive");
-  document.getElementById("roll-dice-btn").onclick = game.play(game.currentPlayer, game.currentToken);
-  return game;
+  document.getElementById("roll-dice-btn").onclick = game.play(game.currentPlayer, game.selectTokenToMove(game.currentToken));
 }
 
 // // Parametric CSS animation
