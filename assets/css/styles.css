@@ -1,8 +1,8 @@
 :root {
-    --green-hsl: 120,100%;
+    --green-hsl: 120, 100%;
     --yellow-hsl: 60, 100%;
     --red-hsl: 0, 100%;
-    --blue-hsl: 240,100%;
+    --blue-hsl: 240, 100%;
     --green-color: hsl(var(--green-hsl), 25%);
     --yellow-color: hsl(var(--yellow-hsl), 50%);
     --red-color: hsl(var(--red-hsl), 50%);
@@ -10,7 +10,7 @@
     --board-color: hsl(33, 100%, 88%);
     --outside-border-board: brown;
     --inside-border-board: black;
-    --btn-hsl: 33,100%;
+    --btn-hsl: 33, 100%;
     --btn-color: hsl(var(--btn-hsl), 88%);
     --btn-color-hover: hsl(var(--btn-hsl), 80%);
 }
@@ -22,10 +22,12 @@
 }
 
 body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-h1, h2, p {
+h1,
+h2,
+p {
     margin-bottom: 1rem;
 }
 
@@ -101,13 +103,11 @@ h2.sub-title {
 
 #control-panel button.btn.inactive {
     cursor: not-allowed;
-    background: repeating-linear-gradient(
-        -45deg,
-        var(--btn-color-hover),
-        var(--btn-color-hover) 10px,
-        var(--btn-color) 10px,
-        var(--btn-color) 20px
-    )
+    background: repeating-linear-gradient(-45deg,
+            var(--btn-color-hover),
+            var(--btn-color-hover) 10px,
+            var(--btn-color) 10px,
+            var(--btn-color) 20px)
 }
 
 #start-rules {
@@ -115,13 +115,32 @@ h2.sub-title {
 }
 
 #dice {
-    width: 80px;
-    height: 80px;
-    margin: 2rem;
+    width: 100px;
+    height: 100px;
+    margin: 1rem;
     background-image: url('/assets/img/dice-perspective.svg');
     background-repeat: no-repeat;
     background-position: center center;
-    /* background-size: 80px; */
+    background-size: 60px;
+}
+
+#dice.animated {
+    animation: .2s steps(5) infinite alternate animated-dice;
+}
+
+@keyframes animated-dice {
+    from {
+        background-position: top;
+    }
+
+    to {
+        background-position: bottom;
+    }
+}
+
+#dice-value {
+    margin-top: 10px;
+    font-size: .8rem;
 }
 
 #board:after {
@@ -162,167 +181,167 @@ h2.sub-title {
         ". . . . . . . . . . . . .";
 }
 
-.cell-0 {
+#cell-0 {
     grid-area: cell-0;
 }
 
-.cell-1 {
+#cell-1 {
     grid-area: cell-1;
 }
 
-.cell-2 {
+#cell-2 {
     grid-area: cell-2;
 }
 
-.cell-3 {
+#cell-3 {
     grid-area: cell-3;
 }
 
-.cell-4 {
+#cell-4 {
     grid-area: cell-4;
 }
 
-.cell-5 {
+#cell-5 {
     grid-area: cell-5;
 }
 
-.cell-6 {
+#cell-6 {
     grid-area: cell-6;
 }
 
-.cell-7 {
+#cell-7 {
     grid-area: cell-7;
 }
 
-.cell-8 {
+#cell-8 {
     grid-area: cell-8;
 }
 
-.cell-9 {
+#cell-9 {
     grid-area: cell-9;
 }
 
-.cell-10 {
+#cell-10 {
     grid-area: cell-10;
 }
 
-.cell-11 {
+#cell-11 {
     grid-area: cell-11;
 }
 
-.cell-12 {
+#cell-12 {
     grid-area: cell-12;
 }
 
-.cell-13 {
+#cell-13 {
     grid-area: cell-13;
 }
 
-.cell-14 {
+#cell-14 {
     grid-area: cell-14;
 }
 
-.cell-15 {
+#cell-15 {
     grid-area: cell-15;
 }
 
-.cell-16 {
+#cell-16 {
     grid-area: cell-16;
 }
 
-.cell-17 {
+#cell-17 {
     grid-area: cell-17;
 }
 
-.cell-18 {
+#cell-18 {
     grid-area: cell-18;
 }
 
-.cell-19 {
+#cell-19 {
     grid-area: cell-19;
 }
 
-.cell-20 {
+#cell-20 {
     grid-area: cell-20;
 }
 
-.cell-21 {
+#cell-21 {
     grid-area: cell-21;
 }
 
-.cell-22 {
+#cell-22 {
     grid-area: cell-22;
 }
 
-.cell-22 {
+#cell-22 {
     grid-area: cell-22;
 }
 
-.cell-23 {
+#cell-23 {
     grid-area: cell-23;
 }
 
-.cell-24 {
+#cell-24 {
     grid-area: cell-24;
 }
 
-.cell-25 {
+#cell-25 {
     grid-area: cell-25;
 }
 
-.cell-26 {
+#cell-26 {
     grid-area: cell-26;
 }
 
-.cell-27 {
+#cell-27 {
     grid-area: cell-27;
 }
 
-.cell-28 {
+#cell-28 {
     grid-area: cell-28;
 }
 
-.cell-29 {
+#cell-29 {
     grid-area: cell-29;
 }
 
-.cell-30 {
+#cell-30 {
     grid-area: cell-30;
 }
 
-.cell-31 {
+#cell-31 {
     grid-area: cell-31;
 }
 
-.cell-32 {
+#cell-32 {
     grid-area: cell-32;
 }
 
-.cell-33 {
+#cell-33 {
     grid-area: cell-33;
 }
 
-.cell-34 {
+#cell-34 {
     grid-area: cell-34;
 }
 
-.cell-35 {
+#cell-35 {
     grid-area: cell-35;
 }
 
-.cell-36 {
+#cell-36 {
     grid-area: cell-36;
 }
 
-.cell-37 {
+#cell-37 {
     grid-area: cell-37;
 }
 
-.cell-38 {
+#cell-38 {
     grid-area: cell-38;
 }
 
-.cell-39 {
+#cell-39 {
     grid-area: cell-39;
 }
 
@@ -337,6 +356,7 @@ h2.sub-title {
 .cell.green-safe-3 {
     grid-area: green-safe-3;
 }
+
 .cell.green-safe-4 {
     grid-area: green-safe-4;
 }
@@ -352,6 +372,7 @@ h2.sub-title {
 .cell.yellow-safe-3 {
     grid-area: yellow-safe-3;
 }
+
 .cell.yellow-safe-4 {
     grid-area: yellow-safe-4;
 }
@@ -367,6 +388,7 @@ h2.sub-title {
 .cell.red-safe-3 {
     grid-area: red-safe-3;
 }
+
 .cell.red-safe-4 {
     grid-area: red-safe-4;
 }
@@ -430,9 +452,7 @@ h2.sub-title {
     height: 100%
 }
 
-.start.green:before {
-    
-}
+.start.green:before {}
 
 .start.yellow:before {
     transform: rotate(90deg);
@@ -465,25 +485,25 @@ h2.sub-title {
 
 .region.top-left {
     grid-area: region-top-left;
-    grid-template-rows: 60% 1fr;
+    grid-template-rows: 20px 60% 1fr;
     grid-template-columns: 60% 1fr;
 }
 
 .region.top-right {
     grid-area: region-top-right;
-    grid-template-rows: 60% 1fr;
+    grid-template-rows: 20px 60% 1fr;
     grid-template-columns: 1fr 60%;
 }
 
 .region.bottom-left {
     grid-area: region-bottom-left;
-    grid-template-rows: 1fr 60%;
+    grid-template-rows: 1fr 60% 20px;
     grid-template-columns: 60% 1fr;
 }
 
 .region.bottom-right {
     grid-area: region-bottom-right;
-    grid-template-rows: 1fr 60%;
+    grid-template-rows: 1fr 60% 20px;
     grid-template-columns: 1fr 60%;
 }
 
@@ -495,23 +515,47 @@ h2.sub-title {
 }
 
 .region.top-left .yard {
-    grid-row: 1 / 2;
+    grid-row: 2 / 3;
     grid-column: 1 / 2;
 }
 
-.region.top-right .yard {
+.region.top-left .player-name {
     grid-row: 1 / 2;
-    grid-column: 2 / 2;
+    grid-column: 1 / 3;
+    text-align: left;
+}
+
+.region.top-right .yard {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+}
+
+.region.top-right .player-name {
+    grid-row: 1 / 2;
+    grid-column: 1 / 3;
+    text-align: right;
 }
 
 .region.bottom-left .yard {
-    grid-row: 2 / span 1;
-    grid-column: 1 / span 1;
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+}
+
+.region.bottom-left .player-name {
+    grid-row: 3 / 4;
+    grid-column: 1 / 3;
+    text-align: left;
 }
 
 .region.bottom-right .yard {
-    grid-row: 2 / 2;
-    grid-column: 2 / 2;
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+}
+
+.region.bottom-right .player-name {
+    grid-row: 3 / 4;
+    grid-column: 1 / 3;
+    text-align: right;
 }
 
 .token-yard {
@@ -523,6 +567,7 @@ h2.sub-title {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: transparent;
 }
 
 
@@ -532,30 +577,69 @@ h2.sub-title {
     width: 25px;
     height: 25px;
     border-radius: 50%;
+    position: absolute;
+    z-index: 100;
+    transition-property: left, top;
+    transition-duration: .5s;
+    transition-timing-function: ease-in-out;
+    /* animation: .5s ease-in-out move-token; */
+}
+
+@keyframes move-token {
+    0% {
+        top: 0;
+        left: 0;
+        scale: 1;
+    }
+
+    25% {
+        top: 50px;
+        left: 50px;
+        scale: 1.25;
+    }
+
+    50% {
+        top: 50px;
+        left: 50px;
+        scale: 1.5;
+    }
+
+    75% {
+        top: 100px;
+        left: 100px;
+        scale: 1.25;
+    }
+
+    100% {
+        top: 200px;
+        left: 200px;
+        scale: 1;
+    }
+
 }
 
 .token.green {
     box-shadow: 0px 0px 4px 1px hsl(var(--green-hsl), 5%),
-                inset 6px 6px 6px -5px hsl(var(--green-hsl), 95%),
-                inset -6px -6px 6px -6px hsl(var(--green-hsl), 5%);
+        inset 6px 6px 6px -5px hsl(var(--green-hsl), 95%),
+        inset -6px -6px 6px -6px hsl(var(--green-hsl), 5%);
 }
 
 .token.yellow {
     box-shadow: 0px 0px 4px 1px hsl(var(--yellow-hsl), 5%),
-                inset 6px 6px 6px -5px hsl(var(--yellow-hsl), 95%),
-                inset -6px -6px 6px -6px hsl(var(--yellow-hsl), 5%);
+        inset 6px 6px 6px -5px hsl(var(--yellow-hsl), 95%),
+        inset -6px -6px 6px -6px hsl(var(--yellow-hsl), 5%);
 }
 
 .token.red {
     box-shadow: 0px 0px 4px 1px hsl(var(--red-hsl), 5%),
-                inset 6px 6px 6px -5px hsl(var(--red-hsl), 95%),
-                inset -6px -6px 6px -6px hsl(var(--red-hsl), 5%);
+        inset 6px 6px 6px -5px hsl(var(--red-hsl), 95%),
+        inset -6px -6px 6px -6px hsl(var(--red-hsl), 5%);
 }
 
 .token.blue {
     box-shadow: 0px 0px 4px 1px hsl(var(--blue-hsl), 5%),
-                inset 6px 6px 6px -5px hsl(var(--blue-hsl), 95%),
-                inset -6px -6px 6px -6px hsl(var(--blue-hsl), 5%);
+        inset 6px 6px 6px -5px hsl(var(--blue-hsl), 95%),
+        inset -6px -6px 6px -6px hsl(var(--blue-hsl), 5%);
 }
 
 
@@ -571,7 +655,7 @@ h2.sub-title {
     padding: 2rem;
     background-color: white;
     border-radius: 5px;
-    box-shadow: 0px 0px 15px 5px rgba(0, 0 , 0, 0.2);
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.2);
     overflow: auto;
 }
 
