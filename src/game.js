@@ -39,12 +39,6 @@ class Game {
     });
   }
 
-  resetBoard() {
-    console.log("Reset");
-    document.querySelectorAll(".token").forEach(el => el.remove());
-    document.querySelectorAll(".player-name").forEach(el => el.remove());
-  }
-
   // Get player name
   getPlayerName(player) {
     return player.name;
@@ -54,7 +48,7 @@ class Game {
   rotatePlayer() {
     if (this.currentPlayer < this.players.length - 1) this.currentPlayer += 1;
     else this.currentPlayer = 0;
-    console.log("Next player is: " + this.currentPlayer);
+    // console.log("Next player is: " + this.currentPlayer);
     document.getElementById("roll-dice-btn").textContent = `${this.getPlayerName(this.players[this.currentPlayer])} rolls the dice`;
   }
 
@@ -83,17 +77,48 @@ class Token {
     this.isSafe = false;
     this.isSafePosition = null;
     this.isSaved = false;
+    this.canStart = false;
+    this.startAttempt = 3;
   }
+
+  checkIfCanMove(dice) {
+    return dice === 6 ? true : false;
+  }
+
   move() {
     // const currentTop = getCellCoordinates(this.position).top;
     // const currentLeft = getCellCoordinates(this.position).left;
     const increment = this.rollDice();
-    const currentPosition = this.position;
-    this.position = this.position + increment <= 39 ? this.position + increment : this.position + increment - 40;
 
-    const newTop = getCellCoordinates(this.position).top;
-    const newLeft = getCellCoordinates(this.position).left;
-    console.log(`Player "token-${this.color}-${this.id}" is moving from position ${currentPosition} to position ${this.position}`);
+    if (!this.checkIfCanMove(increment)) {
+      console.log("You should get a 6 to move a token on the board");
+      return;
+    }
+
+    const currentPosition = this.position;
+    let nextPosition = 0;
+
+    if (this.isSafe === false) {
+      nextPosition = this.position + increment <= 39 ? this.position + increment : this.position + increment - 40;
+    }
+    if (this.position < this.start && this.position + increment >= this.start) {
+      this.isSafe = true;
+      this.isSafePosition = this.position + increment - (this.start - 1);
+      if (this.isSafePosition > 4) {
+        this.isSaved = true;
+        console.log(this, "Token is saved");
+        return;
+      }
+      nextPosition = this.isSafePosition;
+    }
+    if (!this.isSaved) this.position = nextPosition;
+    if (this.isSafe) {
+      this.position = this.isSafePosition;
+    }
+
+    const newTop = getCellCoordinates(nextPosition, this.color, this.isSafe).top;
+    const newLeft = getCellCoordinates(nextPosition, this.color, this.isSafe).left;
+    console.log(`Player "token-${this.color}-${this.id}" is moving from position ${currentPosition} to position ${nextPosition}`);
     document.getElementById("token-" + this.color + "-" + this.id).style.top = `${newTop + 10}px`;
     document.getElementById("token-" + this.color + "-" + this.id).style.left = `${newLeft + 10}px`;
   }
@@ -105,6 +130,10 @@ class Token {
 }
 
 // Get token current position
-function getCellCoordinates(cell) {
+function getCellCoordinates(cell, color = null, safe = false) {
+  if (safe) {
+    console.log(`Targeted cell: .cell.${color}-safe-${cell}`);
+    return document.querySelector(`.cell.${color}-safe-${cell}`).getBoundingClientRect();
+  }
   return document.getElementById("cell-" + cell).getBoundingClientRect();
 }
