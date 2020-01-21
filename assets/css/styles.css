@@ -646,7 +646,7 @@ h2.sub-title {
 /************************************* Modal Window *************************************/
 
 .modal-is-visible {
-    z-index: 10;
+    z-index: 999;
     position: absolute;
     top: 20%;
     bottom: 20%;
@@ -667,6 +667,7 @@ h2.sub-title {
 }
 
 .background-overlay {
+    z-index: 998;
     position: absolute;
     top: 0px;
     left: 0px;

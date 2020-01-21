@@ -5,11 +5,15 @@ const defaultPlayerSetting = [
   { id: 4, color: "yellow", active: false }
 ];
 
+let game;
+
 const body = document.body;
 const playerSettings = document.getElementById("player-settings");
+const startBtn = document.querySelector("button.btn.start-game");
 document.querySelector("button[data-modal=rules]").onclick = showRules;
-document.querySelector("button.btn.start-game").onclick = startGame;
+startBtn.onclick = startGame;
 document.querySelector(".add-player-btn").onclick = addPlayer;
+const diceBtn = document.getElementById("roll-dice-btn");
 
 // Show/hide rules modal
 function showRules(evt) {
@@ -76,6 +80,35 @@ function getPlayerSettings(player) {
   }, {});
 }
 
+function resetPlayerSettings() {
+  game.resetBoard();
+  playerSettings.querySelectorAll("input, select").forEach(element => {
+    element.value = "";
+    element.disabled = false;
+  });
+  playerSettings.querySelectorAll("fieldset").forEach((element, index) => {
+    if (index > 1) element.remove();
+  });
+  playerSettings.style.opacity = 1;
+  startBtn.textContent = "Start";
+  startBtn.removeEventListener("click", resetPlayerSettings);
+}
+
+function disablePlayerSetings() {
+  playerSettings.style.opacity = 0.4;
+  playerSettings.querySelectorAll("input, select").forEach(element => {
+    element.disabled = true;
+  });
+  playerSettings.querySelectorAll(".add-player-btn").forEach(element => {
+    element.removeEventListener("click", addPlayer, false);
+    element.style.cursor = "initial";
+  });
+  playerSettings.querySelectorAll(".remove-player-btn").forEach(element => {
+    element.removeEventListener("click", removePlayer, true);
+    element.style.cursor = "initial";
+  });
+}
+
 function getPlayers() {
   return [...document.querySelectorAll("#player-settings fieldset")].map((e, index) => {
     return {
@@ -88,11 +121,15 @@ function getPlayers() {
 
 // Start game
 function startGame(evt) {
-  const game = new Game(getPlayers());
-  console.log(game);
+  game = new Game(getPlayers());
+  disablePlayerSetings();
+  startBtn.textContent = "Reset";
+  startBtn.removeEventListener("click", game.play());
+  startBtn.addEventListener("click", resetPlayerSettings);
   document.getElementById("dice").classList.toggle("animated");
-  document.getElementById("roll-dice-btn").classList.toggle("inactive");
-  document.getElementById("roll-dice-btn").onclick = game.play(game.selectTokenToMove(game.players[game.currentPlayer]));
+  diceBtn.classList.toggle("inactive");
+  diceBtn.onclick = game.play(game.selectToken(game.players[game.currentPlayer]));
+  console.log("Next player: ", game.players[game.currentPlayer]);
 }
 
 // // Parametric CSS animation
