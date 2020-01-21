@@ -122,7 +122,8 @@ function getPlayers() {
     return {
       id: index + 1,
       name: e.querySelector("input[type=text]").value,
-      color: e.querySelector("select").value
+      color: e.querySelector("select").value,
+      score: 0
     };
   });
 }
@@ -137,7 +138,6 @@ function startGame(evt) {
   document.getElementById("dice").classList.toggle("animated");
   diceBtn.classList.toggle("inactive");
   diceBtn.onclick = game.play(game.selectToken(game.players[game.currentPlayer]));
-  console.log("Next player: ", game.players[game.currentPlayer]);
 }
 
 // // Parametric CSS animation

@@ -141,6 +141,7 @@ h2.sub-title {
 #dice-value {
     margin-top: 10px;
     font-size: .8rem;
+    text-align: center;
 }
 
 #board:after {
@@ -570,6 +571,22 @@ h2.sub-title {
     color: transparent;
 }
 
+.animated {
+    display: inline-block;
+    animation: 1s ease-in-out 4 alternate animated-score;
+}
+
+@keyframes animated-score {
+    from {
+        scale: 0;
+        color: black;
+    }
+
+    to {
+        scale: 1.5;
+        color: red;
+    }
+}
 
 /************************************* Token *************************************/
 
@@ -675,4 +692,39 @@ h2.sub-title {
     opacity: 0.8;
     width: 100vw;
     height: 100vh;
+}
+
+.hit-modal {
+    position: absolute;
+    z-index: 998;
+    width: 178px;
+    height: 154px;
+    top: 35%;
+    left: 35%;
+    background-image: url('/assets/img/explosion.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    animation: 1s ease-in-out hit;
+}
+
+@keyframes hit {
+    0% {
+        scale: 0;
+    }
+
+    25% {
+        scale: 1;
+    }
+
+    50% {
+        scale: 2;
+    }
+
+    75% {
+        scale: 1;
+    }
+
+    100% {
+        scale: 0;
+    }
 }
