@@ -180,7 +180,7 @@ class Token {
         if (this.safePosition > 4) {
           this.isSaved = true;
           // game.incrementScore();
-          // return;
+          return;
         }
         nextPosition = this.safePosition;
       }
@@ -247,9 +247,7 @@ class Token {
       tokenFeedback.remove();
       if (game.getWinner()) {
         alert(`${game.getWinner()} wins the game! Congratulations.`);
-        // resetBoard();
         resetPlayerSettings();
-        // game = new Game(getPlayers());
         return;
       }
     }, 1000);

@@ -14,8 +14,8 @@ document.querySelector("button[data-modal=rules]").onclick = showRules;
 startBtn.addEventListener("click", startGame);
 document.querySelector(".add-player-btn").addEventListener("click", addPlayer);
 const dice = document.getElementById("dice");
-const diceBtn = document.getElementById("roll-dice-btn");
 const diceValue = document.getElementById("dice-value");
+const diceBtn = document.getElementById("roll-dice-btn");
 
 // Show/hide rules modal
 function showRules(evt) {
@@ -96,7 +96,6 @@ function resetPlayerSettings() {
   startBtn.removeEventListener("click", resetPlayerSettings);
   startBtn.addEventListener("click", startGame);
   dice.classList.toggle("animated");
-  diceBtn.removeEventListener("click", game.play);
   diceBtn.textContent = "Roll the dice";
   diceBtn.classList.toggle("inactive");
   diceValue.textContent = "";
@@ -144,7 +143,7 @@ function startGame(evt) {
   startBtn.removeEventListener("click", startGame);
   document.getElementById("dice").classList.toggle("animated");
   diceBtn.classList.toggle("inactive");
-  diceBtn.addEventListener("click", game.play(game.selectToken(game.players[game.currentPlayer])));
+  diceBtn.onclick = game.play(game.selectToken(game.players[game.currentPlayer]));
 }
 
 // // Parametric CSS animation
