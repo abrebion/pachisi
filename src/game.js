@@ -96,7 +96,7 @@ class Game {
 
   // Main function to rotate players
   play(token) {
-    return () => {
+    return e => {
       token.move();
       if (token.isSaved) {
         this.incrementScore(this.players[this.currentPlayer]);

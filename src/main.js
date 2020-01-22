@@ -6,7 +6,7 @@ const defaultPlayerSetting = [
 ];
 
 let game;
-
+let gamePayCurrentPlayer;
 const body = document.body;
 const playerSettings = document.getElementById("player-settings");
 const startBtn = document.querySelector("button.btn.start-game");
@@ -99,6 +99,11 @@ function resetPlayerSettings() {
   diceBtn.textContent = "Roll the dice";
   diceBtn.classList.toggle("inactive");
   diceValue.textContent = "";
+  diceBtn.onclick = null; // working alternative to diceBtn.removeEventListener();
+}
+
+function hello() {
+  gamePayCurrentPlayer();
 }
 
 function disablePlayerSetings() {
