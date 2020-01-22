@@ -96,7 +96,7 @@ function resetPlayerSettings() {
   startBtn.removeEventListener("click", resetPlayerSettings);
   startBtn.addEventListener("click", startGame);
   dice.classList.toggle("animated");
-  diceBtn.removeEventListener("click", game.play;
+  diceBtn.removeEventListener("click", game.play);
   diceBtn.textContent = "Roll the dice";
   diceBtn.classList.toggle("inactive");
   diceValue.textContent = "";
