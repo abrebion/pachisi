@@ -13,7 +13,9 @@ const startBtn = document.querySelector("button.btn.start-game");
 document.querySelector("button[data-modal=rules]").onclick = showRules;
 startBtn.addEventListener("click", startGame);
 document.querySelector(".add-player-btn").addEventListener("click", addPlayer);
+const dice = document.getElementById("dice");
 const diceBtn = document.getElementById("roll-dice-btn");
+const diceValue = document.getElementById("dice-value");
 
 // Show/hide rules modal
 function showRules(evt) {
@@ -93,7 +95,11 @@ function resetPlayerSettings() {
   startBtn.textContent = "Start";
   startBtn.removeEventListener("click", resetPlayerSettings);
   startBtn.addEventListener("click", startGame);
+  dice.classList.toggle("animated");
+  diceBtn.removeEventListener("click", game.play;
+  diceBtn.textContent = "Roll the dice";
   diceBtn.classList.toggle("inactive");
+  diceValue.textContent = "";
 }
 
 function disablePlayerSetings() {
@@ -112,7 +118,6 @@ function disablePlayerSetings() {
 }
 
 function resetBoard() {
-  console.log("Reset");
   document.querySelectorAll(".token").forEach(el => el.remove());
   document.querySelectorAll(".player-name").forEach(el => (el.textContent = ""));
 }
@@ -130,14 +135,16 @@ function getPlayers() {
 
 // Start game
 function startGame(evt) {
+  document.getElementById("ambiant-music").play();
   game = new Game(getPlayers());
+  console.log(game);
   disablePlayerSetings();
   startBtn.textContent = "Reset";
   startBtn.addEventListener("click", resetPlayerSettings);
   startBtn.removeEventListener("click", startGame);
   document.getElementById("dice").classList.toggle("animated");
   diceBtn.classList.toggle("inactive");
-  diceBtn.onclick = game.play(game.selectToken(game.players[game.currentPlayer]));
+  diceBtn.addEventListener("click", game.play(game.selectToken(game.players[game.currentPlayer])));
 }
 
 // // Parametric CSS animation

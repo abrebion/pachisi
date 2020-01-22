@@ -16,8 +16,10 @@ class Game {
 
   // Initialize token positions on board
   initPlayers() {
-    console.log(this);
-    // console.log("Next player to play:" + this.currentPlayer);
+    // Reset current player and current token property
+    this.currentPlayer = 0;
+    this.currentToken = 0;
+
     return this.players.map(player => {
       const tokens = [];
       for (let i = 1; i <= 4; i++) {
@@ -31,7 +33,9 @@ class Game {
         newTokenEl.style.top = `${yardTop + 12.5}px`;
         newTokenEl.style.left = `${yardLeft + 12.5}px`;
       }
-      // Render player's names
+      // Reset player score after end of game
+      player.score = 0;
+      // Render player's names on board
       const playerName = document.createElement("span");
       playerName.textContent = player.name;
       document.querySelector("#player-" + player.color + " .player-name").appendChild(playerName);
@@ -60,11 +64,16 @@ class Game {
     document.querySelector("#player-" + player.color + " .player-name .score").classList.add("animated");
   }
 
+  // Display winner
+  getWinner() {
+    const winner = this.players.filter(element => element.score === 4);
+    if (winner.length > 0) return winner[0].name;
+  }
+
   // Rotate through players
   rotatePlayer() {
     if (this.currentPlayer < this.players.length - 1) this.currentPlayer += 1;
     else this.currentPlayer = 0;
-    // console.log("Next player is: " + this.currentPlayer);
     document.getElementById("roll-dice-btn").textContent = `${this.getPlayerName(this.players[this.currentPlayer])} rolls the dice`;
   }
 
@@ -78,24 +87,26 @@ class Game {
       .flat();
   }
 
+  // Select token to play with
   selectToken(player) {
-    // this.currentToken = player.tokens[0];
     this.currentToken = player.tokens.filter(element => !element.isSaved)[0];
+    console.log("Result of select token:", this.currentToken);
     return this.currentToken;
   }
 
   // Main function to rotate players
   play(token) {
-    return evt => {
+    return () => {
       token.move();
       if (token.isSaved) {
         this.incrementScore(this.players[this.currentPlayer]);
+        token.tokenFeedback("save");
       }
       if (token.initialPosition) {
-        console.log("Player plays again because he's just entered the board");
+        // console.log("Player plays again because he's just entered the board");
         token.initialPosition = false;
       } else if (token.canPlayAgain) {
-        console.log("Player plays again because he got a 6.");
+        // console.log("Player plays again because he got a 6.");
         token.canPlayAgain = false;
       } else {
         this.rotatePlayer();
@@ -113,7 +124,7 @@ class Token {
     this.position = this.start;
     this.isPlaying = false;
     this.isSafe = false;
-    this.safePosition = null;
+    this.safePosition = 0;
     this.isSaved = false;
     this.canMove = false;
     this.startAttempt = 3;
@@ -122,99 +133,90 @@ class Token {
   }
 
   move() {
-    // console.log("canMove: " + this.canMove + ", startAttempts: " + this.startAttempt, "position: " + this.position);
-
     const increment = this.rollDice();
 
-    // console.log(`You get a ${increment}.`);
     if (!this.canMove) {
       if (increment !== 6 && this.startAttempt > 0) {
         this.startAttempt -= 1;
-        // document.getElementById("dice-value").textContent = `You got a ${increment}. Sorry, but you should get a 6 to move on!`;
-        console.log(`You got a ${increment}. You should get a 6 to move a token on the board. You have ${this.startAttempt} atttempt(s) left.`);
-        // console.log(this);
         this.move();
         return;
       }
       if (increment === 6) {
-        // document.getElementById("dice-value").textContent = `Great! You got a ${increment}. Enter the game and play again!`;
-        console.log("You got a 6. Well done!");
         this.canMove = true;
         this.isPlaying = true;
         this.initialPosition = true;
+        this.getCellCoordinates = 3;
       }
     }
 
     if (!this.canMove) {
-      this.renderUserMessage(increment);
+      this.renderUserFeedback(increment);
       this.startAttempt = 3;
       return;
     }
 
     console.log(this);
     if (increment === 6 && !this.initialPosition) {
-      // document.getElementById("dice-value").textContent = `You got a ${increment}. You can play again!`;
       this.canPlayAgain = true;
-    } else {
-      // document.getElementById("dice-value").textContent = `You got a ${increment}.`;
     }
-    const currentPosition = this.position;
+
+    // Set the next position to reach
+    const currentPosition = this.position; // Used for logging purpose
     let nextPosition = 0;
 
+    // Token has just entered the game, place him at starting location
     if (this.initialPosition === true) {
       nextPosition = this.start;
-    } else {
-      // Token is entering the safe zone
-      const translatedStart = this.start || 40;
-      // console.log("Translate", translatedStart);
+    }
+    // Token is not on starting position
+    else {
+      const translatedStart = this.start || 40; // Special case if starting position is 0
 
+      // Token is entering the safe zone
       if (this.position < translatedStart && this.position + increment >= translatedStart) {
         this.isSafe = true;
         this.safePosition = this.position + increment - (translatedStart - 1);
         this.position = null;
         if (this.safePosition > 4) {
           this.isSaved = true;
-          alert(`Token ${this.color} is saved. Old position: ${this.position}, increment:  ${increment}, safePosition: ${this.safePosition}`);
-          game.incrementScore();
-          return;
+          // game.incrementScore();
+          // return;
         }
         nextPosition = this.safePosition;
       }
 
-      // Token is already in the safe zone but has not reach the end
+      // Token is already in the safe zone but has not reach the end yet
       else if (this.safePosition) {
         nextPosition = this.safePosition + increment;
+        this.safePosition = this.safePosition + increment;
         if (nextPosition > 4) {
           this.isSaved = true;
-          alert(`Token ${this.color} is saved`);
+          // alert(`Token ${this.color} is saved`);
           document.getElementById("token-" + this.color + "-" + this.id).remove();
           // game.incrementScore();
           return;
         }
-      } else {
+      }
+
+      // Default case
+      else {
         nextPosition = this.position + increment <= 39 ? this.position + increment : this.position + increment - 40;
         this.position = nextPosition;
       }
     }
-
-    // Condition to ease debugging
-    // if (this.color === "blue") {
-    //   nextPosition = this.start;
-    //   this.position = nextPosition;
-    // }
-
-    // if (this.color === "green") nextPosition = this.start;
-
+    // Perform the move
     const newTop = getCellCoordinates(nextPosition, this.color, this.isSafe).top;
     const newLeft = getCellCoordinates(nextPosition, this.color, this.isSafe).left;
     console.log(`Player "token-${this.color}-${this.id}" is moving by ${increment}, from position ${currentPosition} to position ${nextPosition}`);
     document.getElementById("token-" + this.color + "-" + this.id).style.top = `${newTop + 10}px`;
     document.getElementById("token-" + this.color + "-" + this.id).style.left = `${newLeft + 10}px`;
-    this.hitCompetitor(nextPosition, this.callbackHit);
-    this.renderUserMessage(increment);
+
+    // Perform post move actions
+    this.hitCompetitor(nextPosition, this.tokenFeedback);
+    this.renderUserFeedback(increment);
   }
 
-  renderUserMessage(increment) {
+  renderUserFeedback(increment) {
     const userMessageEl = document.getElementById("dice-value");
     let userMessage;
     if (increment === 6 && this.initialPosition) userMessage = `Great! You got a ${increment} to enter the game.<br>You can play again.`;
@@ -226,27 +228,34 @@ class Token {
 
   hitCompetitor(nextPosition, callback) {
     const activeTokens = game.getActiveTokens();
-    // console.log(activeTokens);
     activeTokens.forEach(token => {
       if (token.color !== this.color && token.position === nextPosition) {
-        this.init(token);
-        callback();
+        this.initToken(token);
+        callback("hit");
       }
     });
     return activeTokens;
   }
 
-  callbackHit() {
-    // alert("You hit someone!");
-    const hitModal = document.createElement("div");
-    hitModal.className = "hit-modal";
-    document.getElementById("board").appendChild(hitModal);
+  tokenFeedback(action) {
+    const tokenFeedback = document.createElement("div");
+    tokenFeedback.className = `feedback-token ${action}`;
+    document.getElementById("board").appendChild(tokenFeedback);
+    document.getElementById(`sound-${action}`).play();
+
     setTimeout(() => {
-      hitModal.remove();
+      tokenFeedback.remove();
+      if (game.getWinner()) {
+        alert(`${game.getWinner()} wins the game! Congratulations.`);
+        // resetBoard();
+        resetPlayerSettings();
+        // game = new Game(getPlayers());
+        return;
+      }
     }, 1000);
   }
 
-  init(token) {
+  initToken(token) {
     token.isPlaying = false;
     token.isSafe = false;
     token.safePosition = null;
@@ -269,17 +278,12 @@ class Token {
   }
 
   rollDice() {
-    const diceValue = Math.floor(Math.random() * 6 + 1);
-    // document.getElementById("dice-value").textContent = `You got a ${diceValue}!`;
-    return diceValue;
+    return Math.floor(Math.random() * 6 + 1);
   }
 }
 
 // Get token current position
 function getCellCoordinates(cell, color = null, safe = false) {
-  if (safe) {
-    // console.log(`Targeted cell: .cell.${color}-safe-${cell}`);
-    return document.querySelector(`.cell.${color}-safe-${cell}`).getBoundingClientRect();
-  }
+  if (safe) return document.querySelector(`.cell.${color}-safe-${cell}`).getBoundingClientRect();
   return document.getElementById("cell-" + cell).getBoundingClientRect();
 }

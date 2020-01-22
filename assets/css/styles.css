@@ -694,20 +694,28 @@ h2.sub-title {
     height: 100vh;
 }
 
-.hit-modal {
+.feedback-token {
     position: absolute;
     z-index: 998;
     width: 178px;
     height: 154px;
     top: 35%;
     left: 35%;
-    background-image: url('/assets/img/explosion.svg');
+    background-image: url('/assets/img/token-hit.svg');
     background-repeat: no-repeat;
     background-position: center center;
-    animation: 1s ease-in-out hit;
+    animation: 1s ease-in-out feedback-token;
 }
 
-@keyframes hit {
+.hit {
+    background-image: url('/assets/img/token-hit.svg');
+}
+
+.save {
+    background-image: url('/assets/img/token-save.svg');
+}
+
+@keyframes feedback-token {
     0% {
         scale: 0;
     }
