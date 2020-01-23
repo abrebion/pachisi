@@ -118,7 +118,7 @@ h2.sub-title {
     width: 100px;
     height: 100px;
     margin: 1rem;
-    background-image: url('./assets/img/dice-perspective.svg');
+    background-image: url('../img/dice-perspective.svg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 60px;
@@ -442,7 +442,7 @@ h2.sub-title {
 }
 
 .start:before {
-    background-image: url('./assets/img/start-position.svg');
+    background-image: url('../img/start-position.svg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 40%;
@@ -468,7 +468,7 @@ h2.sub-title {
 }
 
 .safe {
-    background-image: url('./assets/img/safe-position.svg');
+    background-image: url('../img/safe-position.svg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 60%;
@@ -698,18 +698,18 @@ h2.sub-title {
     height: 154px;
     top: 35%;
     left: 35%;
-    background-image: url('./assets/img/token-hit.svg');
+    background-image: url('../img/token-hit.svg');
     background-repeat: no-repeat;
     background-position: center center;
     animation: 1s ease-in-out feedback-token;
 }
 
 .hit {
-    background-image: url('./assets/img/token-hit.svg');
+    background-image: url('../img/token-hit.svg');
 }
 
 .save {
-    background-image: url('./assets/img/token-save.svg');
+    background-image: url('../img/token-save.svg');
 }
 
 @keyframes feedback-token {
